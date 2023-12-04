@@ -1,0 +1,43 @@
+.all-tabs{
+  display: flex;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: fit-content;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab .tablinks {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab-container{
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.template-content{
+  padding: 25px;
+  border: 1px solid #e3e3e3;
+  margin: 0 25px;
+  position: relative;
+}
+
+.close{
+  padding-left: 16px;
+}
+
+.selected{
+  font-weight: bold;
+}

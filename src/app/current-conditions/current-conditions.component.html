@@ -1,0 +1,74 @@
+<div class="flex">
+  <app-tab *ngFor="let location of currentConditionsByZip(); let i = index"
+           [header]="location.data.name + ' ('+location.zip+')'"
+           [index]="i"
+           (onCloseTab)="closeTab($event)">
+
+    <div *ngIf="currentConditionsByZip()[tabService?.selectedTabIndex] as currentCondition" class="flex space-between">
+      <div>
+        <h3> {{currentCondition?.data?.name}} ({{currentCondition?.zip}})</h3>
+        <h4>Current conditions: {{currentCondition?.data.weather[0].main}}</h4>
+        <h4>Temperatures today:</h4>
+        <p>
+          Current {{currentCondition?.data.main.temp | number:'.0-0'}}
+          - Max {{currentCondition?.data.main.temp_max | number:'.0-0'}}
+          - Min {{currentCondition?.data.main.temp_min | number:'.0-0'}}
+        </p>
+        <p>
+          <a [routerLink]="['/forecast', currentCondition?.zip]" >Show 5-day forecast for {{currentCondition?.data.name}}</a>
+        </p>
+      </div>
+      <div class="img-container">
+        <img [alt]="'image_'+currentCondition?.data.weather[0].id" [src]="weatherService.getWeatherIcon(currentCondition?.data.weather[0].id)">
+      </div>
+    </div>
+  </app-tab>
+</div>
+
+
+
+<!--  <div *ngFor="let location of currentConditionsByZip()" class="well flex">
+
+    <div>
+      <h3>{{location.data.name}} ({{location.zip}})</h3>
+      <h4>Current conditions: {{location.data.weather[0].main}}</h4>
+      <h4>Temperatures today:</h4>
+      <p>
+        Current {{location.data.main.temp | number:'.0-0'}}
+        - Max {{location.data.main.temp_max | number:'.0-0'}}
+        - Min {{location.data.main.temp_min | number:'.0-0'}}
+      </p>
+      <p>
+        <a [routerLink]="['/forecast', location.zip]" >Show 5-day forecast for {{location.data.name}}</a>
+      </p>
+    </div>
+    <div>
+      <span class="close" (click)="locationService.removeLocation(location.zip)">&times;</span>
+      <img [alt]="'image_'+location.data.weather[0].id" [src]="weatherService.getWeatherIcon(location.data.weather[0].id)">
+    </div>
+ </div>-->
+
+
+
+<!--
+<div>
+  <div *ngFor="let location of currentConditionsByZip()" class="well flex">
+    <div>
+      <h3>{{location.data.name}} ({{location.zip}})</h3>
+      <h4>Current conditions: {{location.data.weather[0].main}}</h4>
+      <h4>Temperatures today:</h4>
+      <p>
+        Current {{location.data.main.temp | number:'.0-0'}}
+        - Max {{location.data.main.temp_max | number:'.0-0'}}
+        - Min {{location.data.main.temp_min | number:'.0-0'}}
+      </p>
+      <p>
+        <a [routerLink]="['/forecast', location.zip]" >Show 5-day forecast for {{location.data.name}}</a>
+      </p>
+    </div>
+    <div>
+      <span class="close" (click)="locationService.removeLocation(location.zip)">&times;</span>
+      <img [alt]="'image_'+location.data.weather[0].id" [src]="weatherService.getWeatherIcon(location.data.weather[0].id)">
+    </div>
+  </div>
+</div>-->

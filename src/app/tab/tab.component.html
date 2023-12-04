@@ -1,0 +1,14 @@
+<div class="tab" [class]="index == tabService.selectedTabIndex ? 'selected' : ''">
+    <button class="tablinks" (click)="select()">
+        <span>{{header}}</span>
+        <span class="close" (click)="close()">&times;</span>
+    </button>
+</div>
+
+<!-- Tab content -->
+<div class="tab-container" *ngIf="index == tabService.selectedTabIndex">
+    <div class="template-content">
+        <ng-content></ng-content>
+    </div>
+</div>
+

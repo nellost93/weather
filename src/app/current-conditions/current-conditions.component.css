@@ -1,0 +1,15 @@
+.close {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+.space-between{
+  justify-content: space-between;
+}
+
+.img-container{
+  padding-left: 20px;
+}
