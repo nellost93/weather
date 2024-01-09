@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { HttpInterceptorService } from './http-interceptor.service';
 import {TabComponent} from './tab/tab.component';
 import {TabService} from './tab.service';
+import { HelloComponent } from './hello-component/hello.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {TabService} from './tab.service';
         RouterModule,
         routing,
         ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
-        TabComponent
+        TabComponent,
+        HelloComponent
     ],
   providers: [
     LocationService,

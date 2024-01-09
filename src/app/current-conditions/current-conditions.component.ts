@@ -3,7 +3,6 @@ import {WeatherService} from "../weather.service";
 import {LocationService} from "../location.service";
 import {Router} from "@angular/router";
 import {ConditionsAndZip} from '../conditions-and-zip.type';
-import {toObservable} from '@angular/core/rxjs-interop';
 import {TabService} from '../tab.service';
 
 @Component({
