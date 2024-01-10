@@ -1,0 +1,5 @@
+<div class="inline-flex">
+    <ng-container *ngFor="let tab of tabItems.toArray(); let i = index">
+        <ng-container [ngTemplateOutlet]="tabItems.get(i).template"></ng-container>
+    </ng-container>
+</div>

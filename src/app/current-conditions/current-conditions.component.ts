@@ -11,12 +11,14 @@ import {TabService} from '../tab.service';
   styleUrls: ['./current-conditions.component.css']
 })
 export class CurrentConditionsComponent {
-
   private router = inject(Router);
   protected weatherService = inject(WeatherService);
   protected currentConditionsByZip: Signal<ConditionsAndZip[]> = this.weatherService.getCurrentConditions();
 
   protected locationService = inject(LocationService);
+
+  tabTest1 = true;
+  tabTest2 = true;
 
   constructor(public tabService: TabService) {}
 

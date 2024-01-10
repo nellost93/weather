@@ -1,38 +1,39 @@
 <div class="flex">
-  <app-tab *ngFor="let location of currentConditionsByZip(); let i = index"
-           [header]="location.data.name + ' ('+location.zip+')'"
-           [index]="i"
-           (onCloseTab)="closeTab($event)">
+  <app-tabs-container>
+    <app-tab *ngFor="let location of currentConditionsByZip(); let i = index"
+            [header]="location.data.name + ' ('+location.zip+')'"
+            (onCloseTab)="closeTab($event)">
 
-    <div *ngIf="currentConditionsByZip()[tabService?.selectedTabIndex] as currentCondition" class="flex space-between">
-      <div>
-        <h3> {{currentCondition?.data?.name}} ({{currentCondition?.zip}})</h3>
-        <h4>Current conditions: {{currentCondition?.data.weather[0].main}}</h4>
-        <h4>Temperatures today:</h4>
-        <p>
-          Current {{currentCondition?.data.main.temp | number:'.0-0'}}
-          - Max {{currentCondition?.data.main.temp_max | number:'.0-0'}}
-          - Min {{currentCondition?.data.main.temp_min | number:'.0-0'}}
-        </p>
-        <p>
-          <a [routerLink]="['/forecast', currentCondition?.zip]" >Show 5-day forecast for {{currentCondition?.data.name}}</a>
-        </p>
+      <div *ngIf="currentConditionsByZip()[tabService?.selectedTabIndex] as currentCondition" class="flex space-between">
+        <div>
+          <h3> {{currentCondition?.data?.name}} ({{currentCondition?.zip}})</h3>
+          <h4>Current conditions: {{currentCondition?.data.weather[0].main}}</h4>
+          <h4>Temperatures today:</h4>
+          <p>
+            Current {{currentCondition?.data.main.temp | number:'.0-0'}}
+            - Max {{currentCondition?.data.main.temp_max | number:'.0-0'}}
+            - Min {{currentCondition?.data.main.temp_min | number:'.0-0'}}
+          </p>
+          <p>
+            <a [routerLink]="['/forecast', currentCondition?.zip]" >Show 5-day forecast for {{currentCondition?.data.name}}</a>
+          </p>
+        </div>
+        <div class="img-container">
+          <img [alt]="'image_'+currentCondition?.data.weather[0].id" [src]="weatherService.getWeatherIcon(currentCondition?.data.weather[0].id)">
+        </div>
       </div>
-      <div class="img-container">
-        <img [alt]="'image_'+currentCondition?.data.weather[0].id" [src]="weatherService.getWeatherIcon(currentCondition?.data.weather[0].id)">
-      </div>
-    </div>
-  </app-tab>
+    </app-tab>
 
-  <!-- EXAMPLE HELLO-COMPONENT -->
-  <app-tab [index]="currentConditionsByZip().length" [header]="'Hello Component'">
-    <app-hello-component></app-hello-component>
-  </app-tab>
-  
-  <!-- EXAMPLE LAST TAB (inline html) -->
-  <app-tab [index]="currentConditionsByZip().length+1" [header]="'Last Tab'">
-    <p>
-        "Example" last tab
-    </p>
-  </app-tab>
+    <!-- EXAMPLE HELLO-COMPONENT -->
+    <app-tab *ngIf="tabTest1" [header]="'Hello Component'" (onCloseTab)="tabTest1=false">
+      <app-hello-component></app-hello-component>
+    </app-tab>
+    
+    <!-- EXAMPLE LAST TAB (inline html) -->
+    <app-tab *ngIf="tabTest2" [header]="'Last Tab'" (onCloseTab)="tabTest2=false">
+      <p>
+          "Example" last tab
+      </p>
+    </app-tab>
+  </app-tabs-container>
 </div>

@@ -1,7 +1,5 @@
-import {Component, EventEmitter, Input, Output, Signal} from '@angular/core';
+import {Component, EventEmitter, Input, Output, Signal, TemplateRef, ViewChild} from '@angular/core';
 import {DecimalPipe, NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
-import {LocationService} from '../location.service';
-import {WeatherService} from '../weather.service';
 import {TabService} from '../tab.service';
 
 @Component({
@@ -17,12 +15,12 @@ import {TabService} from '../tab.service';
   ]
 })
 export class TabComponent {
-
+  index: number = 0;
+  
+  @ViewChild('template', {static: true}) template: TemplateRef<any>;
   @Input() header: string;
-  @Input() index: number;
   @Output() onCloseTab = new EventEmitter<number>();
   @Output() onSelectTab = new EventEmitter<number>();
-
 
   constructor(public tabService: TabService) {}
 
@@ -35,6 +33,5 @@ export class TabComponent {
     this.tabService.closeTab(this.index);
     this.onCloseTab.emit(this.index);
   }
-
-
+  
 }

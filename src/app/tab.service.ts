@@ -11,8 +11,7 @@ export class TabService {
   }
 
   closeTab(tabIndex: number){
-    (this.selectedTabIndex <= tabIndex && this.selectedTabIndex > 0) && this.selectedTabIndex--;
+    this.selectedTabIndex > 0 && this.selectedTabIndex--;
   }
-
 
 }
